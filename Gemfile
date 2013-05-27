@@ -2,7 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 gem 'bootstrap-sass', '~> 2.3.1.2'
-gem 'pg'
+
+group :production do
+  gem 'pg'
+end
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -25,6 +28,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rspec-rails'
+  gem 'sqlite3'
 end
 
 group :test do
