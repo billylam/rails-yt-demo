@@ -1,4 +1,9 @@
 RailsYtDemo::Application.routes.draw do
+  resources :videos
+
+
+  get "video/show"
+
   get "static_pages/home"
 
   # The priority is based upon order of creation:
