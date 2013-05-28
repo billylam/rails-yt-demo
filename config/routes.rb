@@ -1,4 +1,5 @@
 RailsYtDemo::Application.routes.draw do
+  #remove destroy when creating demo users
   resources :videos
   get "video/show"
   get "static_pages/home"

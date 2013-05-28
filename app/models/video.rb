@@ -1,3 +1,3 @@
 class Video < ActiveRecord::Base
-  attr_accessible :rating, :url
+  attr_accessible :url, :rating
 end

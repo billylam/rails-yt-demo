@@ -40,16 +40,19 @@ class VideosController < ApplicationController
   # POST /videos
   # POST /videos.json
   def create
-    @video = Video.new(params[:video])
-
-    respond_to do |format|
-      if @video.save
-        format.html { redirect_to @video, notice: 'Video was successfully created.' }
-        format.json { render json: @video, status: :created, location: @video }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @video.errors, status: :unprocessable_entity }
-      end
+    @video = Video.new
+    #1. parse youtube_id
+    id = get_youtube_id(params[:video][:url]) #can remove url from model
+    #2. determine if id is valid with call to http://gdata.youtube.com/feeds/   api/videos/#{youtube_id} 
+    #  and it is not blank
+    rating = get_rating(id)
+    #3. parse rating and category if valid
+    
+    @video.update_attributes(:url => id, :rating => rating)
+    if @video.save
+      render 'show'
+    else
+      render 'new'
     end
   end
 
@@ -78,6 +81,32 @@ class VideosController < ApplicationController
     respond_to do |format|
       format.html { redirect_to videos_url }
       format.json { head :no_content }
+    end
+  end
+
+  private
+  def get_youtube_id(url)
+    if url[/youtu\.be\/([^\?]*)/]
+      id = $1
+    else
+      url[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
+      id = $5
+    end
+  end
+
+  def get_rating(id)
+    require 'open-uri'
+    xml = Nokogiri::XML(open("http://gdata.youtube.com/feeds/api/videos/#{id}?v=2"))
+    rating_string = xml.xpath("//yt:rating").to_s
+    rating_string[/numLikes=\"(\d+)/]
+    likes = $1.to_i
+    rating_string[/numDislikes=\"(\d+)/]
+    dislikes = $1.to_i
+
+    if likes + dislikes == 0
+      0
+    else
+      ( 100.0 * likes / ( likes + dislikes )).to_i
     end
   end
 end
