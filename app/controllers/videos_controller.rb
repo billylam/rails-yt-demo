@@ -45,7 +45,7 @@ class VideosController < ApplicationController
     id = get_youtube_id(params[:video][:url]) #can remove url from model
     #2. determine if id is valid with call to http://gdata.youtube.com/feeds/   api/videos/#{youtube_id} 
     #  and it is not blank
-    rating = get_rating(id)
+    rating = get_video_attributes(id)[:rating]
     #3. parse rating and category if valid
     
     @video.update_attributes(:url => id, :rating => rating)
@@ -94,19 +94,11 @@ class VideosController < ApplicationController
     end
   end
 
-  def get_rating(id)
+  def get_video_attributes(id)
     require 'open-uri'
-    xml = Nokogiri::XML(open("http://gdata.youtube.com/feeds/api/videos/#{id}?v=2"))
-    rating_string = xml.xpath("//yt:rating").to_s
-    rating_string[/numLikes=\"(\d+)/]
-    likes = $1.to_i
-    rating_string[/numDislikes=\"(\d+)/]
-    dislikes = $1.to_i
-
-    if likes + dislikes == 0
-      0
-    else
-      ( 100.0 * likes / ( likes + dislikes )).to_i
-    end
+    xml = Nokogiri::XML(open("http://gdata.youtube.com/feeds/api/videos/#{id}"))
+    category = xml.xpath('//media:category')[0].inner_text
+    rating = xml.xpath('//gd:rating')[0]["average"].to_f
+    hash = { category: category, rating: rating }
   end
 end
