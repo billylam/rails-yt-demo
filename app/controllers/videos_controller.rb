@@ -95,6 +95,7 @@ class VideosController < ApplicationController
   end
 
   def get_rating(id)
+    require 'Nokogiri'
     require 'open-uri'
     xml = Nokogiri::XML(open("http://gdata.youtube.com/feeds/api/videos/#{id}?v=2"))
     rating_string = xml.xpath("//yt:rating").to_s
