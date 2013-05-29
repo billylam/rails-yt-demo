@@ -30,6 +30,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'rspec-rails'
   gem 'sqlite3'
+  gem 'quiet_assets'
 end
 
 group :test do
