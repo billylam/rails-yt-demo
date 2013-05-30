@@ -1,4 +1,7 @@
 RailsYtDemo::Application.routes.draw do
+  resources :users
+
+
   resources :playlists
 
 
