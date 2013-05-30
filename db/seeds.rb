@@ -13,6 +13,8 @@ p2 = user.playlists.create(name: "Playlist 2")
 Video.create(youtube_id: "5NV6Rdv1a3I", rating: 4.9)
 Video.create(youtube_id: "6uBK5kvakD8", rating: 4.8)
 
-p1.pl_additions.create(id:1)
-p1.pl_additions.create(id:2)
-p2.pl_additions.create(id:2)
+puts Video.all
+
+p1.pl_additions.create(video_id: 1)
+p1.pl_additions.create(video_id: 2)
+p2.pl_additions.create(video_id: 2)

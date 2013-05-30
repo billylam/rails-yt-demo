@@ -3,10 +3,8 @@
 <p>
   <b>Name:</b>
   <%= @playlist.name %>
-  <b>Videos:</b>
-  <%= @playlist.pl_additions.each do |v| %>
-    <li> <%= v %> </li>
-  <% end %>
+  <b>Videos:</b> <br />
+  <%= render @videos %>
 </p>
 
 
