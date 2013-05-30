@@ -31,6 +31,7 @@ group :development do
   gem 'rspec-rails'
   gem 'sqlite3'
   gem 'quiet_assets'
+  gem 'rest-client'
 end
 
 group :test do
@@ -50,4 +51,4 @@ end
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'
