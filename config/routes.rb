@@ -1,4 +1,7 @@
 RailsYtDemo::Application.routes.draw do
+  resources :playlists
+
+
   #remove destroy when creating demo users
   resources :videos
   get "video/show"

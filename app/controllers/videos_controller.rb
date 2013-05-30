@@ -48,7 +48,7 @@ class VideosController < ApplicationController
     rating = get_video_attributes(id)[:rating]
     #3. parse rating and category if valid
     
-    @video.update_attributes(:url => id, :rating => rating)
+    @video.update_attributes(:youtube_id => id, :rating => rating)
     if @video.save
       render 'show'
     else
@@ -97,6 +97,8 @@ class VideosController < ApplicationController
   def get_video_attributes(id)
     require 'open-uri'
     xml = Nokogiri::XML(open("http://gdata.youtube.com/feeds/api/videos/#{id}"))
+    logger.debug "Queried YouTube: http://gdata.youtube.com/feeds/api/videos/#{id}"
+    logger.debug xml
     category = xml.xpath('//media:category')[0].inner_text
     rating = xml.xpath('//gd:rating')[0]["average"].to_f
     hash = { category: category, rating: rating }
