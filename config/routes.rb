@@ -1,4 +1,8 @@
 RailsYtDemo::Application.routes.draw do
+  get "pl_additions/create"
+
+  get "pl_additions/destroy"
+
   resources :users
 
 

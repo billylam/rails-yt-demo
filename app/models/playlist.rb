@@ -5,4 +5,8 @@ class Playlist < ActiveRecord::Base
   belongs_to :user
   validates :user_id, presence: true
   validates :name, presence: true
+
+  def add(video)
+    pl_additions.create!(video_id: video.id)
+  end
 end
