@@ -2,17 +2,15 @@
 
 <table>
   <tr>
+    <th></th>
     <th>Name</th>
-    <th></th>
-    <th></th>
     <th></th>
   </tr>
 
 <% @playlists.each do |playlist| %>
   <tr>
+    <td><%= link_to image_tag(get_thumbnail_for(playlist.videos.first.youtube_id)), playlist_path(id:playlist.id) %></td>
     <td><%= playlist.name %></td>
-    <td><%= link_to 'Show', playlist %></td>
-    <td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
     <td><%= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
