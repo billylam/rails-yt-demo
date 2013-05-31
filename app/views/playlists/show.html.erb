@@ -1,15 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @playlist.name %>
+<b>Name:</b>
+<%= @playlist.name %>
 </p>
-  <b>Videos:</b>
+<b>Videos:</b>
 <p>
+<% if params[:video_id] %>
+  <%= render @playlist.videos.find(params[:video_id]) %>
+<% else %>
   <%= render @playlist.videos.first %>
+<% end %>
 </p>
 <p>
-  <%= render @playlist %>
+<%= render @playlist %>
 </p>
 
 <%= render 'videos/video_form' %>
