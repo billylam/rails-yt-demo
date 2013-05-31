@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :video do
     #should be from a random set...
+    name "Get Lucky"
     youtube_id "5NV6Rdv1a3I"
     #rating - generate random float from 1-5
     #rand * range + offset

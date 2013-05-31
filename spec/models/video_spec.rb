@@ -6,6 +6,7 @@ describe Video do
 
   it { should respond_to :youtube_id }
   it { should respond_to :rating }
+  it { should respond_to :name }
   it { should respond_to :pl_additions }
 
   describe "validation" do
