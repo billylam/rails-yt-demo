@@ -9,7 +9,6 @@ class Video < ActiveRecord::Base
 
   private
   def create_youtube_id
-    puts "url #{:url}"
     if self.url[/youtu\.be\/([^\?]*)/]
       self.youtube_id = $1
     else
