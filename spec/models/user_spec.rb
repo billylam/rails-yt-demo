@@ -13,6 +13,11 @@ describe User do
       it { should_not be_valid }
     end
 
+    describe "when capitalized version of username exists" do
+      before { FactoryGirl.create(:user, username: @user.username.upcase) }
+      it { should_not be_valid }
+    end
+
     describe "when username is blank" do
       before { @user.username = "" }
       it { should_not be_valid }
