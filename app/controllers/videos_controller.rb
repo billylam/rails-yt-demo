@@ -40,15 +40,8 @@ class VideosController < ApplicationController
   # POST /videos
   # POST /videos.json
   def create
-    @video = Video.new
-    #1. parse youtube_id
-    id = get_youtube_id(params[:video][:url]) #can remove url from model
-    #2. determine if id is valid with call to http://gdata.youtube.com/feeds/api/videos/#{youtube_id} 
-    #  and it is not blank
-    rating = get_video_attributes(id)[:rating]
-    #3. parse rating and category if valid
+    @video = Video.new(params[:video])
     
-    @video.update_attributes(:youtube_id => id, :rating => rating)
     if @video.save
       render 'show'
     else
@@ -82,24 +75,5 @@ class VideosController < ApplicationController
       format.html { redirect_to videos_url }
       format.json { head :no_content }
     end
-  end
-
-  private
-  def get_youtube_id(url)
-    if url[/youtu\.be\/([^\?]*)/]
-      id = $1
-    else
-      url[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
-      id = $5
-    end
-  end
-
-  def get_video_attributes(id)
-    require 'open-uri'
-    xml = Nokogiri::XML(open("http://gdata.youtube.com/feeds/api/videos/#{id}"))
-    logger.debug "Queried YouTube: http://gdata.youtube.com/feeds/api/videos/#{id}"
-    category = xml.xpath('//media:category')[0].inner_text
-    rating = xml.xpath('//gd:rating')[0]["average"].to_f
-    hash = { category: category, rating: rating }
   end
 end
