@@ -43,6 +43,7 @@ class VideosController < ApplicationController
     @video = Video.new(params[:video])
     
     if @video.save
+      @video.pl_additions.create(playlist_id: params[:video][:playlist_id])
       render 'show'
     else
       render 'new'

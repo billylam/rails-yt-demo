@@ -1,6 +1,6 @@
 class Video < ActiveRecord::Base
-  attr_accessor :url
-  attr_accessible :url, :youtube_id, :rating, :name
+  attr_accessor :url, :playlist_id
+  attr_accessible :url, :playlist_id, :youtube_id, :rating, :name
   has_many :pl_additions
   has_many :playlists, through: :pl_additions
 

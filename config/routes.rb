@@ -1,11 +1,8 @@
 RailsYtDemo::Application.routes.draw do
   get "pl_additions/create"
-
   get "pl_additions/destroy"
 
   resources :users
-
-
   resources :playlists
 
 
@@ -64,7 +61,7 @@ RailsYtDemo::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
-  root :to => 'static_pages#home'
+  root :to => "playlists#show", id: 1
 
   # See how all your routes lay out with "rake routes"
 
