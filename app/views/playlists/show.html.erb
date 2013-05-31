@@ -3,8 +3,13 @@
 <p>
   <b>Name:</b>
   <%= @playlist.name %>
-  <b>Videos:</b> <br />
-  <%= render @videos %>
+</p>
+  <b>Videos:</b>
+<p>
+  <%= render @playlist.videos.first %>
+</p>
+<p>
+  <%= render @playlist %>
 </p>
 
 
