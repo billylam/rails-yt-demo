@@ -7,7 +7,7 @@
 <b>Videos:</b>
 <p>
 <% if params[:video_id] %>
-  <%= render @playlist.videos.find(params[:video_id]) %>
+  <%= render @playlist.videos.find(params[:video_id]), autoplay:1 %>
 <% else %>
   <%= render @playlist.videos.first %>
 <% end %>

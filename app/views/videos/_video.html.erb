@@ -1,1 +1,5 @@
-<%= embed video.youtube_id %>
+<% if defined? autoplay %>
+  <%= embed video.youtube_id, autoplay:1  %>
+<% else %>
+  <%= embed video.youtube_id %>
+<% end %>
