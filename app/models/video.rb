@@ -4,8 +4,11 @@ class Video < ActiveRecord::Base
   has_many :pl_additions
   has_many :playlists, through: :pl_additions
 
-  before_save :create_youtube_id
-  before_save :query_youtube
+  before_validation :create_youtube_id
+  before_validation :query_youtube
+
+  validates :name, presence: true
+  validates :youtube_id, presence: true
 
   private
   def create_youtube_id

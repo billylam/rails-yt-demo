@@ -8,6 +8,6 @@ module VideosHelper
   end
 
   def get_thumbnail_for(youtube_id)
-    "http://img.youtube.com/vi/#{ youtube_id }/default.jpg"
+    "http://img.youtube.com/vi/#{ youtube_id }/default.jpg" if youtube_id
   end
 end

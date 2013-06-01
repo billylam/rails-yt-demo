@@ -49,7 +49,10 @@ class VideosController < ApplicationController
         format.js
       end
     else
-      render 'new'
+      #should flash an error without leaving the page.
+      #for now just redirect.
+      flash[:error] = "Invalid video URL."
+      render 'show'
     end
   end
 

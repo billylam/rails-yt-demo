@@ -9,12 +9,16 @@ body {
   float: right;
 }
 
-#logo {
+#textlogo {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
   padding-top: 9px;
   line-height: 1;
+}
+
+#imagelogo {
+  float: left;
 }
 
 #logo:hover {
