@@ -1,23 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-<b>Name:</b>
-<%= @playlist.name %>
-</p>
-<b>Videos:</b>
-<p>
-<!-- move this out of view later -->
-<% if params[:video_id] %>
-  <%= render @playlist.videos.find(params[:video_id]), autoplay:1 %>
-<% elsif !@playlist.videos.nil?%>
-  <%= render @playlist.videos.first %>
-<% end %>
-</p>
-<ul id="playlist">
-<%= render @playlist %>
-</ul>
+<div class="row">
+  <div class="span8">
+    <!-- move this out of view later -->
+    <% if params[:video_id] %>
+      <%= render @playlist.videos.find(params[:video_id]), autoplay:1 %>
+      <h2> <%= @playlist.videos.find(params[:video_id]).name %> </h2>
+    <% elsif !@playlist.videos.nil?%>
+      <%= render @playlist.videos.first %>
+      <h2> <%= @playlist.videos.first.name %> </h2>
+    <% end %>
+    </p>
 
-<%= render 'shared/video_form' %>
-
-<%= link_to 'Rename', edit_playlist_path(@playlist) %> |
-<%= link_to 'Back', playlists_path %>
+    <%= link_to 'Rename', edit_playlist_path(@playlist) %> |
+    <%= link_to 'Back', playlists_path %>
+    <%= render 'shared/video_form' %>
+  </div>
+  <div class="span4">
+    <ul id="playlist">
+      <%= render @playlist %>
+    </ul>
+  </div>
+</div>

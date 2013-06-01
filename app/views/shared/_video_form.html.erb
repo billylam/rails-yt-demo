@@ -1,5 +1,5 @@
 <%= form_for @playlist.videos.build(playlist_id: @playlist.id), html:{method: :post}, remote:true do |f| %>
   <%= f.hidden_field :playlist_id %>
   <%= f.text_field :url, placeholder: "Enter a YouTube url" %>
-  <%= f.submit "Add" %>
+  <%= f.submit "Add", class:"btn btn-submit" %>
 <% end %>
