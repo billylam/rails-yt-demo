@@ -6,9 +6,10 @@
 </p>
 <b>Videos:</b>
 <p>
+<!-- move this out of view later -->
 <% if params[:video_id] %>
   <%= render @playlist.videos.find(params[:video_id]), autoplay:1 %>
-<% else %>
+<% elsif !@playlist.videos.nil?%>
   <%= render @playlist.videos.first %>
 <% end %>
 </p>
