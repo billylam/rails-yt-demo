@@ -1,11 +1,7 @@
 FactoryGirl.define do
   factory :video do
-    #should be from a random set...
-    name "Get Lucky"
-    youtube_id "5NV6Rdv1a3I"
-    #rating - generate random float from 1-5
-    #rand * range + offset
-    rating 4.9 #(rand * 4 + 1)
+    #name: Daft Punk - Get Lucky (Official Audio) ft. Pharrell Williams 
+    url "http://www.youtube.com/watch?v=5NV6Rdv1a3I"
   end
 
   factory :user do
@@ -17,5 +13,8 @@ FactoryGirl.define do
   factory :playlist do
     sequence(:name) { |n| "Playlist #{n}" }
     user
+    after(:create) do |playlist|
+      playlist.videos << FactoryGirl.create(:video)
+    end
   end
 end

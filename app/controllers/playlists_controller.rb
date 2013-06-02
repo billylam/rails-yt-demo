@@ -55,22 +55,6 @@ class PlaylistsController < ApplicationController
     end
   end
 
-  # PUT /playlists/1
-  # PUT /playlists/1.json
-  def update
-    @playlist = Playlist.find(params[:id])
-
-    respond_to do |format|
-      if @playlist.update_attributes(params[:playlist])
-        format.html { redirect_to @playlist, notice: 'Playlist was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @playlist.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /playlists/1
   # DELETE /playlists/1.json
   def destroy

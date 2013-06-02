@@ -1,15 +1,10 @@
 RailsYtDemo::Application.routes.draw do
-  get "pl_additions/create"
-  get "pl_additions/destroy"
-
-  resources :users
-  resources :playlists
-
-
+  root :to => 'static_pages#home'
+  resources :pl_addition, only: [:show, :destroy]
+  resources :users, only: [:index]
+  resources :playlists, only: [:index, :new, :create, :edit, :show, :destroy]
   #remove destroy when creating demo users
-  resources :videos
-  get "video/show"
-  get "static_pages/home"
+  resources :videos, only: [:index, :create]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -61,8 +56,7 @@ RailsYtDemo::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
-  root :to => "playlists#show", id: 1
-
+  
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
