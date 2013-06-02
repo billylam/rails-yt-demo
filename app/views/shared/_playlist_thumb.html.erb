@@ -1,0 +1,7 @@
+<% unless playlist.videos.first.nil? %>
+  <li>
+  <%= link_to image_tag(get_thumbnail_for(playlist.videos.first.          youtube_id)), playlist_path(id:playlist.id) %>
+  <%= link_to playlist.name, playlist_path(id:playlist.id) %>
+
+  </li>
+<% end %>

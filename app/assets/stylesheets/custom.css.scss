@@ -25,11 +25,17 @@ input[type=text] {
   }
 }
 
+ul {
+  list-style-type: none;
+}
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+li {
+  padding-bottom: 5px;
+}
+
 #imagelogo {
   float: left;
 }
-
-#logo:hover {
-  text-decoration: none;
-}
-
