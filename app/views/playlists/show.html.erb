@@ -6,7 +6,7 @@
     <% if params[:video_id] %>
       <%= render @playlist.videos.find(params[:video_id]), autoplay:1 %>
       <h2> <%= @playlist.videos.find(params[:video_id]).name %> </h2>
-    <% elsif !@playlist.videos.nil?%>
+    <% elsif !@playlist.videos.first.nil? %>
       <%= render @playlist.videos.first %>
       <h2> <%= @playlist.videos.first.name %> </h2>
     <% end %>
