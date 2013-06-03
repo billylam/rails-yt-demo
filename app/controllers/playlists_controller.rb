@@ -13,12 +13,16 @@ class PlaylistsController < ApplicationController
   # GET /playlists/1
   # GET /playlists/1.json
   def show
-    @playlist = Playlist.find(params[:id])
-    @videos = @playlist.videos
+    unless Playlist.count == 0
+      @playlist = Playlist.find(params[:id])
+      @videos = @playlist.videos
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @playlist }
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @playlist }
+      end
+    else
+      redirect_to playlists_path
     end
   end
 
