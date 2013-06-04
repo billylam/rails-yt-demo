@@ -1,3 +1,6 @@
 <% playlist.videos.each do |video| %>
-    <li class="playlistItem"> <%= link_to image_tag(get_thumbnail_for(video.youtube_id)), playlist_path(video_id: video.id) if video.id %> </li>
+  <div class="playlistItem">
+    <li> <%= link_to image_tag(get_thumbnail_for(video.youtube_id), class:"playlistThumb"), playlist_path(video_id: video.id) if video.id %> </li>
+    <span class="playlistText"> <%= video.name %> </span>
+  </div>
 <% end %>

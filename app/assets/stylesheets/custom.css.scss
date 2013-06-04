@@ -22,7 +22,7 @@ input[type=text] {
   text-decoration: none;
   &:hover {
     color: #fff;
-  }
+}
 }
 
 ul {
@@ -39,3 +39,34 @@ li {
 #imagelogo {
   float: left;
 }
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #999;
+}
+
+footer a {
+  color: #555;
+}  
+
+footer a:hover { 
+  color: #222;
+}
+
+#footnote {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 10px;
+  }
