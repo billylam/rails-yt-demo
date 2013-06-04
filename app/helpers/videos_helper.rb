@@ -10,4 +10,13 @@ module VideosHelper
   def get_thumbnail_for(youtube_id)
     "http://img.youtube.com/vi/#{ youtube_id }/default.jpg" if youtube_id
   end
+
+  def parse_youtube_id(url_raw)
+    if url_raw[/youtu\.be\/([^\?]*)/]
+      $1
+    else
+      url_raw[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
+      $5
+    end
+  end
 end

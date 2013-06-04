@@ -1,4 +1,5 @@
 class VideosController < ApplicationController
+  include VideosHelper
   # GET /videos
   # GET /videos.json
   def index
@@ -14,8 +15,18 @@ class VideosController < ApplicationController
   # POST /videos.json
   def create
     @video = Video.new(params[:video])
-    
-    if @video.save
+
+
+    #if the video is already in db, create a pl_addition link and format.js 
+    youtube_id = parse_youtube_id(params[:video][:url_raw])
+    if !Video.find_by_youtube_id(youtube_id).nil?
+      @video = Video.find_by_youtube_id(youtube_id)
+      @video.pl_additions.create(playlist_id: params[:video][:playlist_id])
+      respond_to do |format|
+        format.html { render 'show' }
+        format.js
+      end
+    elsif @video.save
       @video.pl_additions.create(playlist_id: params[:video][:playlist_id])
       respond_to do |format|
         format.html { render 'show' }
@@ -28,13 +39,13 @@ class VideosController < ApplicationController
       render 'show'
     end
   end
+end
 
-  def show
-    @video = Video.find(params[:id])
+def show
+  @video = Video.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @video }
-    end
+  respond_to do |format|
+    format.html # show.html.erb
+    format.json { render json: @video }
   end
 end

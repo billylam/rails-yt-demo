@@ -11,11 +11,14 @@ p1 = user.playlists.create(name: "Playlist 1")
 p2 = user.playlists.create(name: "Playlist 2")
 
 #this skips controller create...  fix this to use create
-Video.create(url:"http://www.youtube.com/watch?v=5NV6Rdv1a3I")
-Video.create(url:"http://www.youtube.com/watch?v=6uBK5kvakD8")
-Video.create(url:"http://www.youtube.com/watch?v=h1LgaV-dyEs")
+Video.create(url_raw:"http://www.youtube.com/watch?v=5NV6Rdv1a3I")
+Video.create(url_raw:"http://www.youtube.com/watch?v=6uBK5kvakD8")
+Video.create(url_raw:"http://www.youtube.com/watch?v=h1LgaV-dyEs")
+Video.create(url_raw:"https://www.youtube.com/watch?v=2zNSgSzhBfM")
+Video.create(url_raw:"https://www.youtube.com/watch?v=1bk8s7JpKv0")
 
 p1.pl_additions.create(video_id: 1)
 p1.pl_additions.create(video_id: 2)
-p1.pl_additions.create(video_id: 3)
+p1.pl_additions.create(video_id: 4)
+p1.pl_additions.create(video_id: 5)
 p2.pl_additions.create(video_id: 2)
