@@ -12,6 +12,12 @@ module VideosHelper
   end
 
   def parse_youtube_id(url_raw)
-    $2 if url_raw[/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/]
+    if url_raw[/youtu\.be\/([^\?]*)/]
+      $1
+    else
+      url_raw[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
+      $5
+    end
+
   end
 end
