@@ -12,12 +12,7 @@ class Video < ActiveRecord::Base
 
   private
   def create_youtube_id
-    if self.url_raw[/youtu\.be\/([^\?]*)/]
-      self.youtube_id = $1
-    else
-      self.url_raw[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
-      self.youtube_id = $5
-    end
+    self.youtube_id = $2 if url_raw[/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/]
   end
 
   def query_youtube
