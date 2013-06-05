@@ -8,37 +8,14 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <header class="navbar navbar-inverse">
-    <div class="navbar-inner">
-      <div class="container">
-        <%= link_to image_tag("logo.png", alt: "logo"), root_path, id: "imagelogo" %>
-        <%= link_to "playlist.gov.cn", root_path, id: "textlogo" %>
-        <nav>
-        <ul class="nav", id="rightnav">
-          <li><%= link_to "Playlists", playlists_path %></li>
-          <li><%= link_to "Videos", videos_path %></li>
-        </ul>
-      </div>
-    </div>
-    </header>
+    <%= render 'shared/header' %>
     <div class="container">
       <% flash.each do |k,v| %>
         <div class="alert alert-<%= k %>"><%= v %></div>
       <% end %>
       <%= yield %>
-      <footer>
-      <span id="footnote">
-        Created by Billy Lam
-      </span>
-      <nav>
-      <ul>
-        <li><%= link_to "About",   '#' %></li>
-        <li><%= link_to "Contact", '#' %></li>
-        <li><%= link_to "Blog" , '#'  %></li>
-      </ul>
-      </nav>
-      </footer>
     </div>
+    <%= render 'shared/footer' %>
     <%= debug(params) if Rails.env.development? %>
   </body>
 </html>

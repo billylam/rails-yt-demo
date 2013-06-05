@@ -1,6 +1,10 @@
 <% playlist.videos.each do |video| %>
-  <div class="playlistItem">
-    <li> <%= link_to image_tag(get_thumbnail_for(video.youtube_id), class:"playlistThumb"), playlist_path(video_id: video.id) if video.id %> </li>
-    <span class="playlistText"> <%= video.name %> </span>
-  </div>
+  <% unless video.name.nil? #without this, an empty li is appended, investigate why %>
+    <div class="playlistItem">
+      <li>
+      <%= link_to image_tag(get_thumbnail_for(video.youtube_id), class:"playlistThumb"), playlist_path(video_id: video.id) if video.id %>
+      <p class="playlistText"> <%= video.name %> </p>
+      </li>
+    </div>
+  <% end %>
 <% end %>

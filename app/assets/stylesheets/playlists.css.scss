@@ -7,18 +7,18 @@
   margin:0;
 }
 
-.playlistText{
-  display:block;
-  max-height:77px;
-}
-
 .playlistItem{
-  float:left;
-  margin-bottom:5px;
-  max-height: 91px;
+  // 91 pixels = thumbnail height
+  height:91px;
+  margin-bottom:10px;
 }
 
 .playlistThumb{
   float:left;
   margin-right:5px;
+}
+
+.playlistText {
+  height:77px;
+  overflow-y:hidden;
 }
