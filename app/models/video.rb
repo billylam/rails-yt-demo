@@ -4,22 +4,12 @@ class Video < ActiveRecord::Base
   has_many :pl_additions
   has_many :playlists, through: :pl_additions
 
-  before_validation :create_youtube_id
   before_validation :query_youtube
 
   validates :name, presence: true
   validates :youtube_id, presence: true, uniqueness: true
 
   private
-  def create_youtube_id
-    if self.url_raw[/youtu\.be\/([^\?]*)/]
-      self.youtube_id = $1
-    else
-      self.url_raw[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
-      self.youtube_id = $5
-    end
-  end
-
   def query_youtube
     require 'open-uri'
     xml = Nokogiri::XML(open("http://gdata.youtube.com/feeds/api/videos/#{self.youtube_id}"))
