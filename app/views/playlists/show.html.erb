@@ -5,11 +5,11 @@
   <div class="span8">
     <!-- move this out of view later -->
     <% if params[:video_id] %>
-      <%= render @playlist.videos.find(params[:video_id]), autoplay:1 %>
-      <h2> <%= @playlist.videos.find(params[:video_id]).name %> </h2>
+      <%= render @playlist.videos.find(params[:video_id]), playlist: @playlist %>
+      <h2 class="videoName"> <%= @playlist.videos.find(params[:video_id]).name %> </h2>
     <% elsif !@playlist.videos.first.nil? %>
-      <%= render @playlist.videos.first %>
-      <h2> <%= @playlist.videos.first.name %> </h2>
+      <%= render @playlist.videos.first, playlist: @playlist %>
+      <h2 class="videoName"> <%= @playlist.videos.first.name %> </h2>
     <% end %>
     </p>
 

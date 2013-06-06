@@ -1,8 +1,8 @@
-<% playlist.videos.each do |video| %>
+<% playlist.videos.each_with_index do |video,position| %>
   <% unless video.name.nil? #without this, an empty li is appended, investigate why %>
     <div class="playlistItem">
       <li>
-      <%= link_to image_tag(get_thumbnail_for(video.youtube_id), class:"playlistThumb"), playlist_path(video_id: video.id) if video.id %>
+      <%= image_tag(get_thumbnail_for(video.youtube_id), class:"playlistThumb",  data: {position:position, name:video.name}) if video.id %>
       <p class="playlistText"> <%= video.name %> </p>
       </li>
     </div>

@@ -1,5 +1,43 @@
-<% if defined? autoplay %>
-  <%= embed video.youtube_id, autoplay:1  %>
-<% else %>
-  <%= embed video.youtube_id %>
-<% end %>
+<div id="player"> </div>
+
+<script>
+  var currentlyPlaying = 0;
+  var idList = [<%= raw playlist.videos.pluck(:youtube_id).to_json if defined? playlist %>];
+
+  //Load IFrame YouTube API
+  var tag = document.createElement('script');
+
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  //Construct Player
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '315',
+      width: '560',
+      <% if defined? playlist %>
+        playerVars: {'playlist':idList},
+      <% else %>
+        videoId: '<%= video.youtube_id %>', 
+      <% end %>
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  //Functionality
+  function onPlayerReady(event) {
+  }
+
+  function onPlayerStateChange(event) {
+  }
+
+  function changeVideo(position) {
+    player.playVideoAt(position);
+  }
+
+</script>
