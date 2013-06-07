@@ -30,6 +30,7 @@
   }
 
   //Functionality
+  var reload=false;
   function onPlayerReady(event) {
   }
 
@@ -47,6 +48,16 @@
 
   function highlight(position) {
 
+  }
+
+  function queueReloadPlaylist() {
+    reload = true;
+  }
+
+  function reloadPlaylist(position) {
+    reload = false;
+    idList = <%= raw playlist.videos.pluck(:youtube_id).to_json if defined? playlist %>;
+    player.loadPlaylist(idList);
   }
 
 </script>

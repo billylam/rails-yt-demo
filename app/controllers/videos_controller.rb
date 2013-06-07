@@ -14,20 +14,20 @@ class VideosController < ApplicationController
   # POST /videos
   # POST /videos.json
   def create
+    @playlist = Playlist.find(params[:video][:playlist_id])
     @video = Video.new(params[:video])
-
 
     #if the video is already in db, create a pl_addition link and format.js 
     youtube_id = parse_youtube_id(params[:video][:url_raw])
     if !Video.find_by_youtube_id(youtube_id).nil?
       @video = Video.find_by_youtube_id(youtube_id)
-      @video.pl_additions.create(playlist_id: params[:video][:playlist_id])
+      @video.pl_additions.create(playlist_id: @playlist.id) 
       respond_to do |format|
         format.html { render 'show' }
         format.js
       end
     elsif @video.save
-      @video.pl_additions.create(playlist_id: params[:video][:playlist_id])
+      @video.pl_additions.create(playlist_id: @playlist.id) 
       respond_to do |format|
         format.html { render 'show' }
         format.js

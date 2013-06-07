@@ -1,1 +1,2 @@
-$("#playlist").append('<div class="playlistItem"><li><%= escape_javascript(link_to image_tag(get_thumbnail_for(@video.youtube_id), class:"playlistThumb")) %><p class="playlistText"> <%= @video.name %> </p></li></div>')
+$("#playlist").append('<%= escape_javascript(render 'shared/playlist_item', position:@playlist.videos.length-1, video:@video) %>');
+queueReloadPlaylist();
