@@ -1,6 +1,6 @@
 <div class="playlistItem">
   <li>
-  <%= image_tag(get_thumbnail_for(video.youtube_id), class:"playlistThumb",  data: {position:position, name:video.name}) if video.id %>
+  <%= image_tag(get_thumbnail_for(video.youtube_id), class:"playlistThumb",  data: {position:position, name:video.name, youtube_id:video.youtube_id}) if video.id %>
   <p class="playlistText"> <%= video.name %> </p>
   </li>
 </div>

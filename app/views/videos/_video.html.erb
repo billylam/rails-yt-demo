@@ -35,11 +35,10 @@
   }
 
   function onPlayerStateChange(event) {
-    //if a player is unstarted, we should refresh the playlist if necessary
-
-    //investigate if chaging from yt player also puts it into unstarted state
-
-    //we should highlight the currently playing video
+    if (reload && reload == true && event.data == YT.PlayerState.UNSTARTED) {
+      current = player.getPlaylistIndex();  
+      reloadPlaylist(current);
+    }
   }
 
   function changeVideo(position) {
@@ -50,14 +49,14 @@
 
   }
 
-  function queueReloadPlaylist() {
+  function queueReloadPlaylist(youtube_id) {
+    idList[0].push(youtube_id)
     reload = true;
   }
 
   function reloadPlaylist(position) {
     reload = false;
-    idList = <%= raw playlist.videos.pluck(:youtube_id).to_json if defined? playlist %>;
-    player.loadPlaylist(idList);
+    player.loadPlaylist(idList[0], position);
   }
 
 </script>
