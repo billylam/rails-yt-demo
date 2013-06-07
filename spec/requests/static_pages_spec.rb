@@ -6,9 +6,8 @@ describe "StaticPages" do
   describe "HomePage" do
     it { should have_link "About" }
     it { should have_link "Blog" }
-    it { should have_link "Users" }
     it { should have_link "Playlists" }
     it { should have_link "Videos" }
-    it { should have_link root_path }
+    it { should find_link root_path }
   end
 end

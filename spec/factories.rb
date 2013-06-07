@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :video do
     #name: Daft Punk - Get Lucky (Official Audio) ft. Pharrell Williams 
-    url "http://www.youtube.com/watch?v=5NV6Rdv1a3I"
+    url_raw "http://www.youtube.com/watch?v=5NV6Rdv1a3I"
   end
 
   factory :user do
@@ -13,8 +13,8 @@ FactoryGirl.define do
   factory :playlist do
     sequence(:name) { |n| "Playlist #{n}" }
     user
-    after(:create) do |playlist|
-      playlist.videos << FactoryGirl.create(:video)
+    after(:create) do |p|
+      p.videos << FactoryGirl.create(:video)
     end
   end
 end

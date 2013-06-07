@@ -23,10 +23,6 @@ describe PlaylistsController do
       post("/playlists").should route_to("playlists#create")
     end
 
-    it "routes to #update" do
-      put("/playlists/1").should route_to("playlists#update", :id => "1")
-    end
-
     it "routes to #destroy" do
       delete("/playlists/1").should route_to("playlists#destroy", :id => "1")
     end

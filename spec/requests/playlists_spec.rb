@@ -24,14 +24,14 @@ describe "Playlists" do
     it { should have_button 'Add' }
 
     describe "Add a video" do
-      before { fill_in "video_url", with: @valid_url } 
+      before { fill_in "video_url_raw", with: @valid_url } 
       it "should add a video" do
         expect { click_button 'Add' }.to change(Video, :count).by 1
       end
     end
 
     describe "Add an invalid video" do
-      before { fill_in "video_url", with: @malformed_youtube_url } 
+      before { fill_in "video_url_raw", with: @malformed_youtube_url } 
       it "should not add a video" do
         expect { click_button 'Add' }.not_to change(Video, :count)
       end
@@ -45,9 +45,11 @@ describe "Playlists" do
 
     describe "Add a duplicate video" do
       before do
-        fill_in "video_url", with: @valid_url 
+        fill_in "video_url_raw", with: @valid_url 
+        save_and_open_page
         click_button 'Add'
-        fill_in "video_url", with: @valid_url 
+        save_and_open_page
+        fill_in "video_url_raw", with: @valid_url 
       end
       it "should not add a video" do
         expect { click_button 'Add' }.not_to change(Video, :count)

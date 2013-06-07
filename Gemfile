@@ -33,6 +33,7 @@ group :development do
   gem 'sqlite3'
   gem 'quiet_assets'
   gem 'rest-client'
+  gem 'pry'
 end
 
 group :test do

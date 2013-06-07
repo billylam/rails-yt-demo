@@ -34,10 +34,19 @@
   }
 
   function onPlayerStateChange(event) {
+    //if a player is unstarted, we should refresh the playlist if necessary
+
+    //investigate if chaging from yt player also puts it into unstarted state
+
+    //we should highlight the currently playing video
   }
 
   function changeVideo(position) {
     player.playVideoAt(position);
+  }
+
+  function highlight(position) {
+
   }
 
 </script>
