@@ -2,7 +2,11 @@
 
 <script>
   var currentlyPlaying = 0;
-  var idList = [<%= raw playlist.videos.pluck(:youtube_id).to_json if defined? playlist %>];
+  <% if defined? playlist %>
+    var idList = <%= raw playlist.videos.pluck(:youtube_id).to_json %>;
+  <% else %>
+    var idList = [];
+  <% end %>
 
   //Load IFrame YouTube API
   var tag = document.createElement('script');
@@ -17,11 +21,7 @@
     player = new YT.Player('player', {
       height: '315',
       width: '560',
-      <% if defined? playlist %>
-        playerVars: {'playlist':idList},
-      <% else %>
-        videoId: '<%= video.youtube_id %>', 
-      <% end %>
+      playerVars: {'playlist':[idList]},
       events: {
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange
@@ -50,13 +50,13 @@
   }
 
   function queueReloadPlaylist(youtube_id) {
-    idList[0].push(youtube_id)
+    idList.push(youtube_id)
     reload = true;
   }
 
   function reloadPlaylist(position) {
     reload = false;
-    player.loadPlaylist(idList[0], position);
+    player.loadPlaylist(idList, position);
   }
 
 </script>
