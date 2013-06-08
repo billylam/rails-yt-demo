@@ -18,7 +18,6 @@ Video.create(url_raw:"https://www.youtube.com/watch?v=2zNSgSzhBfM")
 Video.create(url_raw:"https://www.youtube.com/watch?v=1bk8s7JpKv0")
 Video.create(url_raw:"http://www.youtube.com/watch?v=o1tj2zJ2Wvg")
 
-p1.pl_additions.create(video_id: 6)
 p1.pl_additions.create(video_id: 1)
 p1.pl_additions.create(video_id: 2)
 p1.pl_additions.create(video_id: 4)

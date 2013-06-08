@@ -1,6 +1,6 @@
 <div id="player"> </div>
 
-<script>
+<script defer>
   var currentlyPlaying = 0;
   <% if defined? playlist %>
     var idList = <%= raw playlist.videos.pluck(:youtube_id).to_json %>;
