@@ -1,4 +1,6 @@
 class Video < ActiveRecord::Base
+  include VideosHelper
+  
   attr_accessor :playlist_id
   attr_accessible :url_raw, :playlist_id
   has_many :pl_additions
@@ -12,7 +14,7 @@ class Video < ActiveRecord::Base
 
   private
   def create_youtube_id
-    self.youtube_id = $2 if url_raw[/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/]
+    self.youtube_id = parse_youtube_id(url_raw) 
   end
 
   def query_youtube

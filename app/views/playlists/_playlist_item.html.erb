@@ -1,3 +1,5 @@
+<%-# Renders a single video for the right side playlist/carousel  -%>
+
 <div class="playlistItem">
   <li>
   <%= image_tag(get_thumbnail_for(video.youtube_id), class:"playlistThumb",  data: {position:position, name:video.name, youtube_id:video.youtube_id}) if video.id %>

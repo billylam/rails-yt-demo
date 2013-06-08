@@ -1,2 +1,2 @@
-$("#playlist").append('<%= escape_javascript(render 'shared/playlist_item', position:@playlist.videos.length-1, video:@video) %>');
+$("#playlist").append('<%= escape_javascript(render 'playlists/playlist_item', position:@playlist.videos.length-1, video:@video) %>');
 queueReloadPlaylist('<%= @video.youtube_id %>');
