@@ -46,9 +46,7 @@ describe "Playlists" do
     describe "Add a duplicate video" do
       before do
         fill_in "video_url_raw", with: @valid_url 
-        save_and_open_page
         click_button 'Add'
-        save_and_open_page
         fill_in "video_url_raw", with: @valid_url 
       end
       it "should not add a video" do

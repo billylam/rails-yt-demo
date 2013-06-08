@@ -1,3 +1,5 @@
+<!-- #renders the sidebar/carousel playlist of a playlist/:id/show -->
+
 <% playlist.videos.each_with_index do |video,position| %>
   <% unless video.name.nil? #without this, an empty li is appended, investigate why %>
     <%= render 'shared/playlist_item', video:video, position:position %>

@@ -1,7 +1,6 @@
 RailsYtDemo::Application.routes.draw do
   root :to => 'playlists#show',id:1
   resources :pl_addition, only: [:show, :destroy]
-  resources :users, only: [:index]
   resources :playlists, only: [:index, :new, :create, :edit, :show, :destroy]
   #remove destroy when creating demo users
   resources :videos, only: [:index, :create, :show]

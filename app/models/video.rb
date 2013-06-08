@@ -16,8 +16,9 @@ class Video < ActiveRecord::Base
   end
 
   def query_youtube
-    require 'open-uri'
     return unless self.youtube_id && self.youtube_id.length == 11 
+
+    require 'open-uri'
     xml = Nokogiri::XML(open("http://gdata.youtube.com/feeds/api/videos/#{self.youtube_id}"))
     logger.debug "Queried YouTube: http://gdata.youtube.com/feeds/api/videos/#{id}"
     self.url = "http://www.youtube.com/watch?v=#{self.youtube_id}" 
