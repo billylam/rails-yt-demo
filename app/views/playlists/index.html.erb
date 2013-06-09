@@ -1,6 +1,5 @@
 <% provide :page_title, "All playlists" %>
 
-<%= link_to 'New Playlist', new_playlist_path %>
 <h1>All Playlists</h1>
 <ul>
   <% Playlist.all.each do |playlist| %>

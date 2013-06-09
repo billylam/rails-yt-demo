@@ -2,7 +2,7 @@
 
 <li>
   <% if playlist.videos.first.nil? %>
-    <%= link_to image_tag("logo.png"), playlist_path(id:playlist.id) %>
+    <%= link_to image_tag("default.png"), playlist_path(id:playlist.id) %>
   <% else %>
     <%= link_to image_tag(get_thumbnail_for(playlist.videos.first.          youtube_id)), playlist_path(id:playlist.id) %>
   <% end %>
