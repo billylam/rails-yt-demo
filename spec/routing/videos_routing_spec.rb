@@ -7,10 +7,6 @@ describe VideosController do
       get("/videos").should route_to("videos#index")
     end
 
-    it "routes to #show" do
-      get("/videos/1").should route_to("videos#show", :id => "1")
-    end
-
     it "routes to #create" do
       post("/videos").should route_to("videos#create")
     end

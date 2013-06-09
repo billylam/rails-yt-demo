@@ -3,7 +3,7 @@ RailsYtDemo::Application.routes.draw do
   resources :pl_addition, only: [:show, :destroy]
   resources :playlists, only: [:index, :new, :create, :edit, :show, :destroy]
   #remove destroy when creating demo users
-  resources :videos, only: [:index, :create, :show]
+  resources :videos, only: [:index, :create]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

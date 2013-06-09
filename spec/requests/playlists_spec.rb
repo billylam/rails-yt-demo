@@ -8,6 +8,31 @@ describe "Playlists" do
   end
   subject { page }
 
+  describe "Create" do
+    before do
+      name = "Playlist name"
+      visit new_playlist_path
+      fill_in "playlist_name", with: name
+    end
+
+    describe "New playlist" do
+      it "should increment number of playlists" do
+        expect { click_button 'Create playlist' }.to change(Playlist, :count).by 1
+      end
+
+      describe "add" do
+        before { click_button 'Create playlist' }
+        it "should redirect to playlist page" do
+        end
+
+        describe "should allow video addition" do
+          it { should have_selector('input', 'Add') }
+          it { should have_selector('input', 'video_url_raw') }
+        end
+      end
+    end
+  end
+
   describe "Index" do
     before { visit playlists_path } 
     it { should have_content @playlist.name }
@@ -56,9 +81,6 @@ describe "Playlists" do
     end
 
     describe "Click a different video in playlist" do
-    end
-
-    describe "Pagination with > 10 videos" do
     end
   end
 
