@@ -11,7 +11,6 @@ describe "Playlists" do
   describe "Index" do
     before { visit playlists_path } 
     it { should have_content @playlist.name }
-    it { should have_link 'New Playlist' }
     it { should have_link @playlist.name }
 
     describe "Playlist link is clickable" do
@@ -47,6 +46,8 @@ describe "Playlists" do
       before do
         fill_in "video_url_raw", with: @valid_url 
         click_button 'Add'
+        #research why hitting add here (js format) redirects
+        visit playlist_path(@playlist) 
         fill_in "video_url_raw", with: @valid_url 
       end
       it "should not add a video" do

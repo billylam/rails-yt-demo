@@ -1,4 +1,10 @@
 <div id="player"> </div>
+<div class="titleBox">
+  <h4 class="videoName"> <%= playlist.videos.first.name if defined? playlist.videos.first %> </h4>
+</div>
+<div class="descriptionBox">
+  <%= simple_format(auto_link(playlist.videos.first.description)) if defined? playlist.videos.first %>
+</div>
 
 <script defer>
   var currentlyPlaying = 0;
@@ -42,7 +48,7 @@
   }
 
   function changeVideo(position) {
-    player.playVideoAt(position);
+    reloadPlaylist(position);
   }
 
   function highlight(position) {

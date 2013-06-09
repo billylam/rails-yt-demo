@@ -31,7 +31,6 @@ class VideosController < ApplicationController
       flash[:error] = "Invalid video URL."
     end
     respond_to do |format|
-      format.html { render 'show' }
       format.js
     end
   end

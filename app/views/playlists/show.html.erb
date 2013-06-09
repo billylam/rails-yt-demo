@@ -4,9 +4,6 @@
   <div class="span8">
     <% unless @playlist.videos.first.nil? %>
       <%= render @playlist.videos.first, playlist: @playlist %>
-    <div class="titleBox">
-      <h3 class="videoName"> <%= @playlist.videos.first.name %> </h3>
-    </div>
     <% else %>
       <%= render Video.new %> 
     <% end %>

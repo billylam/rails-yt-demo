@@ -8,6 +8,7 @@ describe "StaticPages" do
     it { should have_link "Blog" }
     it { should have_link "Playlists" }
     it { should have_link "Videos" }
-    it { should find_link root_path }
+    it { should have_link "+New List" }
+    it { should have_link "playlister.herokuapp.com" }
   end
 end

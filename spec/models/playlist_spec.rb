@@ -21,10 +21,11 @@ describe Playlist do
 
   describe "add a video" do
     before do
-      video = FactoryGirl.create(:video)
-      @playlist.add(video)
+      @video = FactoryGirl.create(:video)
+      @playlist.save
+      @playlist.add(@video)
     end
 
-    its(:videos) { should include video}
+    its(:videos) { should include @video}
   end
 end

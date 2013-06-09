@@ -5,6 +5,7 @@ gem 'bootstrap-sass', '~> 2.3.1.2'
 gem 'nokogiri'
 gem 'private_pub'
 gem 'thin'
+gem 'rinku', :require => 'rails_rinku'
 
 group :production do
   gem 'pg'

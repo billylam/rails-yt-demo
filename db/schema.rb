@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130606150213) do
+ActiveRecord::Schema.define(:version => 20130609155750) do
 
   create_table "pl_additions", :force => true do |t|
     t.integer  "playlist_id"
@@ -41,13 +41,14 @@ ActiveRecord::Schema.define(:version => 20130606150213) do
   create_table "videos", :force => true do |t|
     t.string   "youtube_id"
     t.float    "rating"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.boolean  "music"
     t.string   "name"
     t.string   "url"
     t.string   "url_raw"
     t.string   "category"
+    t.string   "description"
   end
 
   add_index "videos", ["youtube_id"], :name => "index_videos_on_youtube_id", :unique => true

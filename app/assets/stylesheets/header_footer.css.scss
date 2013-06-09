@@ -4,11 +4,17 @@
   float: right;
   padding-right:0;
   margin-right:0;
-  
 }
 
 #rightnav a {
   padding-right:0;
+}
+
+#newListButton {
+  color: blue;
+  &:hover {
+    color: white;
+  }
 }
 
 #textlogo {
@@ -26,10 +32,6 @@
 
 #imagelogo {
   float: left;
-}
-
-#newListButton {
-  color: blue;
 }
 
 /* footer */

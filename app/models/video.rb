@@ -28,5 +28,6 @@ class Video < ActiveRecord::Base
     self.music = (category == 'Music') ? true : false
     self.rating = xml.xpath('//gd:rating')[0]["average"].to_f
     self.name = xml.xpath('//media:title')[0].inner_text
+    self.description = xml.xpath('//media:description')[0].inner_text
   end
 end

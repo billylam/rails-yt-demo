@@ -9,6 +9,10 @@ module VideosHelper
   end
 
   def parse_youtube_id(url_raw)
-    $2 if url_raw[/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/]
+    if url_raw[/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/]
+      $2
+    elsif url_raw.length == 11 #allow user to pass in video_id's themselves
+      url_raw
+    end
   end
 end

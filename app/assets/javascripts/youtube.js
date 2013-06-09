@@ -6,6 +6,7 @@ $(document).ready(function() {
     }
     changeVideo($(this).data('position'));
     $('.videoName').text($(this).data('name'));
+    $('.descriptionBox').text($(this).data('description'));
   });
 });
 
