@@ -13,9 +13,11 @@
   <body>
     <%= render 'shared/header' %>
     <div class="container">
+      <div id="video_notices">
       <% flash.each do |k,v| %>
         <div class="alert alert-<%= k %>"><%= v %></div>
       <% end %>
+    </div>
       <%= yield %>
     </div>
     <%= render 'shared/footer' %>

@@ -1,9 +1,10 @@
-<%-# Displays   -%>
+<%-# Displays a thumbnail and link for the Playlist index page.  -%>
 
-<% unless playlist.videos.first.nil? %>
-  <li>
-  <%= link_to image_tag(get_thumbnail_for(playlist.videos.first.          youtube_id)), playlist_path(id:playlist.id) %>
+<li>
+  <% if playlist.videos.first.nil? %>
+    <%= link_to image_tag("logo.png"), playlist_path(id:playlist.id) %>
+  <% else %>
+    <%= link_to image_tag(get_thumbnail_for(playlist.videos.first.          youtube_id)), playlist_path(id:playlist.id) %>
+  <% end %>
   <%= link_to playlist.name, playlist_path(id:playlist.id) %>
-
-  </li>
-<% end %>
+</li>

@@ -22,21 +22,17 @@ class VideosController < ApplicationController
     if !Video.find_by_youtube_id(youtube_id).nil?
       @video = Video.find_by_youtube_id(youtube_id)
       @video.pl_additions.create(playlist_id: @playlist.id) 
-      respond_to do |format|
-        format.html { render 'show' }
-        format.js
-      end
+      flash[:notice] = "A user added #{@video.name} to playlist!"
     elsif @video.save
       @video.pl_additions.create(playlist_id: @playlist.id) 
-      respond_to do |format|
-        format.html { render 'show' }
-        format.js
-      end
+      flash[:notice] = "A user added #{@video.name} to playlist!"
     else
-      #should flash an error without leaving the page.
-      #for now just redirect.
+      @video = nil
       flash[:error] = "Invalid video URL."
-      render 'show'
+    end
+    respond_to do |format|
+      format.html { render 'show' }
+      format.js
     end
   end
 

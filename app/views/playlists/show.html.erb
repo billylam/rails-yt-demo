@@ -4,13 +4,13 @@
   <div class="span8">
     <% unless @playlist.videos.first.nil? %>
       <%= render @playlist.videos.first, playlist: @playlist %>
-      <h2 class="videoName"> <%= @playlist.videos.first.name %> </h2>
+    <div class="titleBox">
+      <h3 class="videoName"> <%= @playlist.videos.first.name %> </h3>
+    </div>
     <% else %>
-      <%= render Video.first %> 
+      <%= render Video.new %> 
     <% end %>
-    </p>
 
-    <%= render 'videos/video_form' %>
   </div>
   <div class="span4">
     <ul id="playlist">

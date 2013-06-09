@@ -1,11 +1,10 @@
 <% provide :page_title, "All playlists" %>
 
+<%= link_to 'New Playlist', new_playlist_path %>
 <h1>All Playlists</h1>
-
 <ul>
-  <% @playlists.each do |playlist| %>
+  <% Playlist.all.each do |playlist| %>
     <%= render 'playlist_index_item', playlist: playlist %>
   <% end %>
 </ul>
 
-<%= link_to 'New Playlist', new_playlist_path %>
