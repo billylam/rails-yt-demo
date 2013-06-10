@@ -20,6 +20,10 @@ describe "Playlists" do
         expect { click_button 'Create playlist' }.to change(Playlist, :count).by 1
       end
 
+      describe "should not have null name or description text" do
+        it { should_not have_text('null') }
+      end
+
       describe "add" do
         before { click_button 'Create playlist' }
         it "should redirect to playlist page" do

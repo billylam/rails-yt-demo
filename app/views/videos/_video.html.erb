@@ -1,8 +1,9 @@
 <div id="player"> </div>
 <div class="titleBox">
-  <h4 class="videoName"> </h4> 
+  <h4 class="videoName"> <%= playlist.videos.first.name if defined? playlist.videos.first %> </h4>
 </div>
 <div class="descriptionBox">
+  <%= (playlist.videos.first.description) if defined? playlist.videos.first %>
 </div>
 
 <script defer>
@@ -51,8 +52,10 @@
 
   function showMetadata() {
     currentPos = player.getPlaylistIndex();
-    $('.videoName').text($('.playlistThumb').eq(currentPos).data('name'));
-    $('.descriptionBox').text($('.playlistThumb').eq(currentPos).data('description'));
+    if ($('.playlistThumb').length) {
+      $('.videoName').text($('.playlistThumb').eq(currentPos).data('name'));
+      $('.descriptionBox').text($('.playlistThumb').eq(currentPos).data('description'));
+    }
   }
 
   function changeVideo(position) {
