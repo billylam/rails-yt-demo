@@ -1,9 +1,8 @@
 <div id="player"> </div>
 <div class="titleBox">
-  <h4 class="videoName"> <%= playlist.videos.first.name if defined? playlist.videos.first %> </h4>
+  <h4 class="videoName"> </h4> 
 </div>
 <div class="descriptionBox">
-  <%= simple_format(auto_link(playlist.videos.first.description)) if defined? playlist.videos.first %>
 </div>
 
 <script defer>
@@ -45,6 +44,15 @@
       current = player.getPlaylistIndex();  
       reloadPlaylist(current);
     }
+    if (event.data == YT.PlayerState.UNSTARTED) {
+      showMetadata();
+    }
+  }
+
+  function showMetadata() {
+    currentPos = player.getPlaylistIndex();
+    $('.videoName').text($('.playlistThumb').eq(currentPos).data('name'));
+    $('.descriptionBox').text($('.playlistThumb').eq(currentPos).data('description'));
   }
 
   function changeVideo(position) {
