@@ -22,10 +22,10 @@ class VideosController < ApplicationController
     if !Video.find_by_youtube_id(youtube_id).nil?
       @video = Video.find_by_youtube_id(youtube_id)
       @video.pl_additions.create(playlist_id: @playlist.id) 
-      flash[:notice] = "A user added #{@video.name} to playlist!"
+      flash[:notice] = "A user added \"#{@video.name}\" to the playlist!"
     elsif @video.save
       @video.pl_additions.create(playlist_id: @playlist.id) 
-      flash[:notice] = "A user added #{@video.name} to playlist!"
+      flash[:notice] = "A user added \"#{@video.name}\" to the playlist!"
     else
       @video = nil
       flash[:error] = "Invalid video URL."
