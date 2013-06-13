@@ -5,8 +5,9 @@ FactoryGirl.define do
   end
 
   factory :user do
-    sequence(:username) { |n| "User#{n}" }
-    sequence(:email) { |n| "foo#{n}@bar.com" }
+    sequence(:username) { |n| "Username#{n}" }
+    password "foobar1"
+    password_confirmation "foobar1"
   end
 
   #note - remember associated model for pl factories

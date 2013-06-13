@@ -1,0 +1,7 @@
+<div id="video_notices">
+  <% if flash %>
+    <% flash.each do |k,v| %>
+      <div class="alert alert-<%= k %>"><%= v %></div>
+    <% end %>
+  <% end %>
+</div>

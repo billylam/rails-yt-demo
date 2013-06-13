@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 user = User.create(username: "Guest", email: "foo@bar.com")
-user.save!
+user.save(validate: false)
 p1 = user.playlists.create(name: "Welcome to")
 p2 = user.playlists.create(name: "A New Playlist")
 

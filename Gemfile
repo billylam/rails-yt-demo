@@ -6,6 +6,8 @@ gem 'nokogiri'
 gem 'private_pub'
 gem 'thin'
 gem 'rinku', :require => 'rails_rinku'
+gem 'bcrypt-ruby'
+gem 'cancan'
 
 group :production do
   gem 'pg'

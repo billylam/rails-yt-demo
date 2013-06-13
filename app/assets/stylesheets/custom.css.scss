@@ -3,7 +3,7 @@
 body {
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
   margin-bottom: 0;
 }
 
@@ -21,3 +21,6 @@ li {
 .debug_dump {
   margin:40px;
 }
+
+/* errors */
+

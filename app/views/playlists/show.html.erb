@@ -1,6 +1,7 @@
 <% provide :page_title, @playlist.name %>
 
 <div class="row">
+  <%= render 'shared/flash' %>
   <div class="span8">
     <% unless @playlist.videos.first.nil? %>
       <%= render @playlist.videos.first, playlist: @playlist %>
