@@ -13,12 +13,14 @@
   // 91 pixels = thumbnail height
   height:91px;
   margin-bottom:10px;
+  li {
+    cursor:pointer;
+  }
 }
 
 .playlistThumb{
   float:left;
   margin-right:5px;
-  cursor:pointer;
 }
 
 .playlistText {

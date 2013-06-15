@@ -1,11 +1,16 @@
 RailsYtDemo::Application.routes.draw do
   root :to => 'playlists#show',id:1
+
   resources :pl_addition, only: [:show, :destroy]
   resources :playlists, only: [:index, :new, :create, :edit, :show, :destroy]
   #remove destroy when creating demo users
   resources :videos, only: [:index, :create]
-  match 'signup', to: 'users#new', via: :get
   resources :users, only: [:new, :index, :create]
+  resources :sessions, only: [:new, :create, :destroy]
+
+  match '/signup', to: 'users#new'
+  match '/signin', to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
 
 
   # The priority is based upon order of creation:

@@ -1,0 +1,13 @@
+<% provide(:page_title, "Sign in") %>
+
+<div class="span6 offset3">
+  <h1> Sign in </h1>
+  <%= render 'shared/flash', flash: flash %>
+  <%= form_tag sessions_path do %>
+    <%= label_tag :username %>
+    <%= text_field_tag :username, nil, placeholder: "Username" %>
+    <%= label_tag :password %>
+    <%= password_field_tag :password, nil, placeholder: "Password" %>
+    <%= submit_tag "Sign in", class: "btn" %>
+  <% end %>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130613002024) do
+ActiveRecord::Schema.define(:version => 20130615003447) do
 
   create_table "pl_additions", :force => true do |t|
     t.integer  "playlist_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20130613002024) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "password_digest"
+    t.string   "remember_token"
   end
 
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
