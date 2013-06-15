@@ -2,8 +2,12 @@
 <div class="titleBox">
   <h4 class="videoName"> <%= playlist.videos.first.name if defined? playlist.videos.first %> </h4>
 </div>
-<div class="descriptionBox">
-  <%= (playlist.videos.first.description) if defined? playlist.videos.first %>
+
+<div class="description">
+  <%-#whitespace is significant for this div because of styling css %>
+  <div class="descriptionBox"><%= playlist.videos.first.description.chomp if defined? playlist.videos.first %>
+  </div>
+  <button class="btn btn-small" id="showhide">Show more</button>
 </div>
 
 <script defer>

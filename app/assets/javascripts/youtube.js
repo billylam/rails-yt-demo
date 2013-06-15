@@ -12,5 +12,10 @@ $(document).ready(function() {
   $("#addVideoBtn").click(function() {
     $('#video_notices').hide().fadeIn('slow');
   });
+
+  $('.description').click(function() {
+    $('.descriptionBox').toggleClass('expanded');
+    $('#showhide').text($('#showhide').text() == 'Show more' ? 'Show less' : 'Show more');
+  });
 });
 

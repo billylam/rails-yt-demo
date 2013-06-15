@@ -4,3 +4,28 @@
 
 .thumbnail-details {
 }
+
+.description {
+  position: relative;
+  cursor: pointer;
+}
+
+.descriptionBox {
+  white-space: pre-wrap;
+  //http://sethstevenson.net/youtube-show-more-button/
+  height: 80px;
+  overflow: hidden;
+}
+
+.descriptionBox.expanded {
+  height: auto;
+}
+
+#showhide {
+  padding-top: 0;
+  padding-bottom: 0;
+  position: absolute;
+  width: 100%;
+  vertical-align: middle;
+  border: none;
+}
