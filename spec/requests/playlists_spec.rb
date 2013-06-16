@@ -1,4 +1,5 @@
 require 'spec_helper'
+require "cancan/matchers"
 
 describe "Playlists" do
   before do
@@ -133,20 +134,17 @@ describe "Playlists" do
         fill_in "Playlist name", with: "name"
         check('playlist_private')
         click_button "Create playlist"
-        click_button "Sign Out"
+        click_link "Sign Out"
+        anon = User.first
+        @ability = Ability.new(anon)
       end
 
-      describe "Private playlist should not be able to be seen by anon user" do
-        before { visit_path playlist_path(Playlist.last.id) }
-      end
+      it {  @ability.should_not be_able_to(:view, Playlist.last) }
 
       describe "Private playlist should not be accessible by anon user" do
-          
+        before { visit playlists_path }
+        it { should_not have_text Playlist.last.name } 
       end
-    end
-
-
-    describe "Private playlist should not be accessible by unauthorized user" do
     end
   end
 end

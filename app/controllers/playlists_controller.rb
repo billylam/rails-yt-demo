@@ -15,7 +15,7 @@ class PlaylistsController < ApplicationController
   def show
     unless Playlist.count == 0
       @playlist = Playlist.find(params[:id])
-      authorize! :view, @playlist
+      authorize! :view, @playlist, :message => "This playlist is private."
       @videos = @playlist.videos
 
       respond_to do |format|

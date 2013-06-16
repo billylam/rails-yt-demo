@@ -3,7 +3,7 @@
 <h1>Public Playlists</h1>
 <ul>
   <% Playlist.all.each do |playlist| %>
-    <%= render 'playlist_index_item', playlist: playlist %>
+    <%= render 'playlist_index_item', playlist: playlist unless playlist.private %>
   <% end %>
 </ul>
 
