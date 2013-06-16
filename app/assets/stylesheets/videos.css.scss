@@ -5,19 +5,22 @@
 .thumbnail-details {
 }
 
-.description {
+.videoAttributes {
   position: relative;
-  cursor: pointer;
+}
+
+.videoAttributesBox {
+  //http://sethstevenson.net/youtube-show-more-button/
+  height: 160px;
+  overflow: hidden;
 }
 
 .descriptionBox {
   white-space: pre-wrap;
-  //http://sethstevenson.net/youtube-show-more-button/
-  height: 80px;
-  overflow: hidden;
+  cursor: pointer;
 }
 
-.descriptionBox.expanded {
+.videoAttributesBox.expanded {
   height: auto;
 }
 

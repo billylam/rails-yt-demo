@@ -13,8 +13,8 @@ $(document).ready(function() {
     $('#video_notices').hide().fadeIn('slow');
   });
 
-  $('.description').click(function() {
-    $('.descriptionBox').toggleClass('expanded');
+  $('.description, #showhide').click(function() {
+    $('.videoAttributesBox').toggleClass('expanded');
     $('#showhide').text($('#showhide').text() == 'Show more' ? 'Show less' : 'Show more');
   });
 });

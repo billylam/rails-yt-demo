@@ -56,12 +56,21 @@ describe "Playlists" do
       it "should add a video" do
         expect { click_button 'Add' }.to change(Video, :count).by 1
       end
+
+      describe "should have an alert" do
+        #it { should have_selector('div.alert', 'was added to playlist.') }
+      end
     end
 
     describe "Add an invalid video" do
       before { fill_in "video_url_raw", with: @malformed_youtube_url } 
       it "should not add a video" do
         expect { click_button 'Add' }.not_to change(Video, :count)
+      end
+
+      describe "should show an alert" do
+        #before { click_button 'Add' }
+        #it { should have_selector('div .alert', text: "Invalid video URL.") }
       end
     end
 
