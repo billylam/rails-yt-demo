@@ -12,6 +12,7 @@ describe Playlist do
   it { should respond_to :user_id }
   it { should respond_to :user }
   it { should respond_to :add }
+  it { should respond_to :private }
   its(:user) { should == @user }
 
   describe "when user_id is not present" do
@@ -27,5 +28,15 @@ describe Playlist do
     end
 
     its(:videos) { should include @video}
+  end
+
+  describe "should be private by default" do
+    before do 
+      @playlist.save
+    end
+
+    it "should be private" do
+      @playlist.reload.private.should == false
+    end
   end
 end

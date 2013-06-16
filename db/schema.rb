@@ -11,22 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130615003447) do
+ActiveRecord::Schema.define(:version => 20130616022309) do
 
   create_table "pl_additions", :force => true do |t|
     t.integer  "playlist_id"
     t.integer  "video_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "adder_id"
+    t.string   "adder_username"
   end
 
   add_index "pl_additions", ["playlist_id"], :name => "index_pl_additions_on_playlist_id"
 
   create_table "playlists", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "user_id"
+    t.boolean  "private",    :default => false
   end
 
   create_table "users", :force => true do |t|

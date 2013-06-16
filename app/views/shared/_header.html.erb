@@ -1,18 +1,20 @@
-<header class="navbar">
+<header class="navbar navbar-inverse">
 <div class="navbar-inner">
   <div class="container" id="topContainer">
     <%= link_to image_tag("logo.png", alt: "logo"), root_path, id: "imagelogo" %>
     <%= link_to "Playlister", root_path, id: "textlogo" %>
     <nav>
     <ul class="nav", id="rightnav">
-      <li><%= link_to "Playlists", playlists_path %></li>
-      <li><%= link_to "Videos", videos_path %></li>
-      <li><%= link_to "New List", new_playlist_path, id:"newListButton" %></li>
-      <li>
+      <li><%= link_to "New Playlist", new_playlist_path, id:"newListButton" %></li>
       <% if signed_in? %>
-        <%= link_to "Sign out", signout_path, method: :delete %>
+        <li><%= link_to "My Playlists", '#', id:"myListsButton" %></li>
+      <% end %>
+      <li><%= link_to "Browse Playlists", playlists_path %></li>
+      <% if signed_in? %>
+        <li><%= link_to "Sign out", signout_path, method: :delete %></li>
       <% else %>
-        <%= link_to "Sign in", signin_path, method: :delete %>
+        <li><%= link_to "Sign in", signin_path %></li>
+        <li><%= link_to "Register", signup_path %></li>
       <% end %>
       </li>
     </ul>

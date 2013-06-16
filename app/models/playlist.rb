@@ -1,5 +1,5 @@
 class Playlist < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :private
 
   has_many :pl_additions
   has_many :videos, through: :pl_additions
