@@ -5,7 +5,7 @@
     $("#video_notices").empty();
     <% flash.each do |k,v| %>
       $("#video_notices").append('<div class="alert alert-<%= k %>"><%= v %></div>');
-      $('#video_notices').hide().fadeIn('slow');
+      $('#video_notices').fadeIn('slow');
     <% end %>
   <% end %>
 <% end %>
