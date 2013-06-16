@@ -6,10 +6,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
+      sign_in @user
       #consider changing to ajax popover to stay on name pl
       redirect_to root_path
     else
-      flash[:error] = "Sign up errors."
+      flash.now[:error] = "Sign up errors."
       render 'new'
     end
   end

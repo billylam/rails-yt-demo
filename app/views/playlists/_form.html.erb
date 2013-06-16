@@ -1,17 +1,29 @@
-<%= form_for(@playlist) do |f| %>
-  <% if @playlist.errors.any? %>
-    <div id="error_explanation">
+<div class="span6 offset3">
+  <h1>Create New Playlist</h1>
+  <%= render 'shared/flash', flash: flash %>
+  <%= form_for(@playlist) do |f| %>
+    <% if @playlist.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% @playlist.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-      <ul>
-      <% @playlist.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+    <div class="field">
+      <p>
+      <%= f.label :name, "Playlist name" %>
+      <%= f.text_field :name, placeholder:"Playlist name" %>
+      </p>
+      <% if signed_in? %>
+        <p>
+        <%= f.check_box :private %>
+        <%= f.label :private, "Friend-only playlist", class: "checkbox inline" %>
+        </p>
       <% end %>
-      </ul>
+      <%= f.submit "Create playlist", class:"btn" %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.text_field :name, placeholder:"Enter playlist name" %>
-    <%= f.submit "Create playlist", class:"btn" %>
-  </div>
-<% end %>
+</div>

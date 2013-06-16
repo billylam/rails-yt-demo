@@ -1,5 +1,6 @@
 <%= form_for @playlist.videos.build(playlist_id: @playlist.id), html:{method: :post}, remote:true do |f| %>
   <%= f.hidden_field :playlist_id %>
-  <%= f.text_field :url_raw, placeholder: "Add a YouTube URL to playlist" %>
+  <%= f.text_field :url_raw, size: 20, placeholder: "Add a YouTube video" %>
   <%= f.submit "Add", id:"addVideoBtn" ,class:"btn btn-submit" %>
+  <%= link_to image_tag("icon_upload_youtube.png", alt: "youtube upload button"), '#', id: "youtubeUpload" %>
 <% end %>
