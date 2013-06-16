@@ -15,6 +15,7 @@ class PlaylistsController < ApplicationController
   def show
     unless Playlist.count == 0
       @playlist = Playlist.find(params[:id])
+      authorize! :view, @playlist
       @videos = @playlist.videos
 
       respond_to do |format|
@@ -29,7 +30,11 @@ class PlaylistsController < ApplicationController
   # GET /playlists/new
   # GET /playlists/new.json
   def new
-    @playlist = Playlist.new
+    if signed_in?
+      @playlist = current_user.playlists.build
+    else
+      @playlist = User.first.playlists.build
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,8 +50,11 @@ class PlaylistsController < ApplicationController
   # POST /playlists
   # POST /playlists.json
   def create
-    @playlist = Playlist.new(params[:playlist])
-    @playlist.user_id ||= 1
+    if signed_in?
+      @playlist = current_user.playlists.new(params[:playlist])
+    else
+      @playlist = User.first.playlists.new(params[:playlist])
+    end
 
     respond_to do |format|
       if @playlist.save
