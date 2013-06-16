@@ -32,7 +32,7 @@ describe "Users" do
       visit signin_path
     end
 
-    describe "with valid information" do
+    describe "with valid information and no seed playlists" do
       before do
         fill_in "Username", with: @user.username
         fill_in "Password", with: @user.password
@@ -40,6 +40,27 @@ describe "Users" do
       end
 
       it { should_not have_selector('div.alert.alert-error') }
+      it { should have_selector('a', text: "Sign Out") }
+      it { should have_selector('a', text: "My Playlists") }
+      it { should_not have_selector('a', text: "Register") }
+      it { should_not have_selector('a', text: "Sign In") }
+
+      it "should redirect to playlists index" do
+        current_path.should == playlists_path
+      end
+    end
+
+    describe "with valid information and playlists" do
+      before do
+        FactoryGirl.create(:playlist)
+        fill_in "Username", with: @user.username
+        fill_in "Password", with: @user.password
+        click_button "Sign in"
+      end
+
+      it "should redirect to root" do
+        current_path.should == root_path
+      end
     end
 
     describe "with no information" do

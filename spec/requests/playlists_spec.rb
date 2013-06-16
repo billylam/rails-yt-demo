@@ -97,4 +97,56 @@ describe "Playlists" do
     end
   end
 
+  describe "Privacy" do
+    before do
+      user1 = FactoryGirl.create(:user)
+      visit signin_path
+      fill_in :username, with: user1.username
+      fill_in :password, with: user1.password
+      click_button "Sign in"
+    end
+
+    describe "Creator" do
+      before { visit new_playlist_path }
+
+      describe "Should be able to create Private playlists" do
+        it { should have_unchecked_field("playlist_private") }
+      end
+
+      describe "Should be able to see own playlist" do
+        before do 
+          fill_in "Playlist name", with: "name"
+          check('playlist_private')
+          click_button "Create playlist"
+        end
+
+        it "and be redirected to playlist" do
+          current_path.should == playlist_path(Playlist.last.id) 
+        end
+      end
+    end
+
+
+    describe "Anonymous" do
+      before do
+        visit new_playlist_path
+        fill_in "Playlist name", with: "name"
+        check('playlist_private')
+        click_button "Create playlist"
+        click_button "Sign Out"
+      end
+
+      describe "Private playlist should not be able to be seen by anon user" do
+        before { visit_path playlist_path(Playlist.last.id) }
+      end
+
+      describe "Private playlist should not be accessible by anon user" do
+          
+      end
+    end
+
+
+    describe "Private playlist should not be accessible by unauthorized user" do
+    end
+  end
 end
