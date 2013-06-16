@@ -1,6 +1,6 @@
 module ApplicationHelper
   def full_title(page_title)
-    base_title = "playlister.herokuapp.com"
+    base_title = "Playlister"
     if page_title.empty?
       base_title
     else
