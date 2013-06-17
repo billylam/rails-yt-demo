@@ -5,7 +5,11 @@ RailsYtDemo::Application.routes.draw do
   resources :playlists, only: [:index, :new, :create, :edit, :show, :destroy]
   #remove destroy when creating demo users
   resources :videos, only: [:index, :create]
-  resources :users, only: [:new, :index, :create]
+  resources :users, only: [:new, :index, :create, :show] do
+    member do
+      get 'lists'
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
 
   match '/signup', to: 'users#new'

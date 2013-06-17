@@ -5,10 +5,12 @@ describe "StaticPages" do
   subject { page }
   describe "HomePage" do
     it { should have_link "About" }
+    it { should have_link "Contact" }
     it { should have_link "Blog" }
-    it { should have_link "Playlists" }
-    it { should have_link "Videos" }
-    it { should have_link "New List" }
-    it { should have_link "playlister.herokuapp.com" }
+    it { should have_link "New Playlist" }
+    it { should have_link "Browse Playlists" }
+    it { should have_link "Sign In" }
+    it { should have_link "Register" }
+    it { should have_link "Playlister" }
   end
 end

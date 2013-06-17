@@ -1,0 +1,10 @@
+<% provide :page_title, @user.username %>
+
+
+<h1>User Playlists</h1>
+<ul>
+  <% @user.playlists.each do |playlist| %>
+    <%= render 'playlists/playlist_index_item', playlist: playlist if can? :view, playlist %>
+  <% end %>
+</ul>
+

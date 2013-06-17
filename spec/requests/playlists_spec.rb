@@ -100,10 +100,10 @@ describe "Playlists" do
 
   describe "Privacy" do
     before do
-      user1 = FactoryGirl.create(:user)
+      @user1 = FactoryGirl.create(:user)
       visit signin_path
-      fill_in :username, with: user1.username
-      fill_in :password, with: user1.password
+      fill_in :username, with: @user1.username
+      fill_in :password, with: @user1.password
       click_button "Sign in"
     end
 
@@ -139,12 +139,23 @@ describe "Playlists" do
         @ability = Ability.new(anon)
       end
 
-      it {  @ability.should_not be_able_to(:view, Playlist.last) }
+      it { @ability.should_not be_able_to(:view, Playlist.last) }
 
       describe "Private playlist should not be accessible by anon user" do
         before { visit playlists_path }
         it { should_not have_text Playlist.last.name } 
       end
+
+      describe "Private playlist should not be visible on user's show page" do
+        before { visit user_path(@user1.id) }
+        it { should_not have_text Playlist.last.name }
+      end
+    end
+
+    describe "Friend" do
+    end
+
+    describe "Not Friend" do
     end
   end
 end
