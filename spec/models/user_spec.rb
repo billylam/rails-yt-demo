@@ -9,6 +9,9 @@ describe User do
   it { should respond_to :password }
   it { should respond_to :password_confirmation }
   it { should respond_to :password_digest }
+  it { should respond_to :editors }
+  it { should respond_to :granted_by? }
+  it { should respond_to :allow! }
 
 
   describe "validation" do

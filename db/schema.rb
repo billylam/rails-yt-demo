@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130616022309) do
+ActiveRecord::Schema.define(:version => 20130617042204) do
+
+  create_table "editorships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "editor_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "editorships", ["editor_id"], :name => "index_editorships_on_editor_id"
+  add_index "editorships", ["user_id", "editor_id"], :name => "index_editorships_on_user_id_and_editor_id", :unique => true
+  add_index "editorships", ["user_id"], :name => "index_editorships_on_user_id"
 
   create_table "pl_additions", :force => true do |t|
     t.integer  "playlist_id"
