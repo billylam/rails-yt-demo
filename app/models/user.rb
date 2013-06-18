@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   end
 
   def disallow!(other_user)
-    self.editorships.find_by_user_id(other_user.id).destroy
+    self.editorships.find_by_editor_id(other_user.id).destroy
   end
 
   private

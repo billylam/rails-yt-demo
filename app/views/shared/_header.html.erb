@@ -7,9 +7,10 @@
     <ul class="nav", id="rightnav">
       <li><%= link_to "New Playlist", new_playlist_path, id:"newListButton" %></li>
       <% if signed_in? %>
-        <li><%= link_to "My Playlists", '#', id:"myListsButton" %></li>
+        <li><%= link_to "My Playlists", user_path(current_user.id), id:"myListsButton" %></li>
       <% end %>
       <li><%= link_to "Browse Playlists", playlists_path %></li>
+      <li><%= link_to "Users", users_path %></li>
       <% if signed_in? %>
         <li><%= link_to "Sign Out", signout_path, method: :delete %></li>
       <% else %>

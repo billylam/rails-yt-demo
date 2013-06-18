@@ -1,0 +1,9 @@
+<% unless current_user?(@user) %>
+  <div>
+    <% if current_user.allow?(@user) %>
+      <%= render 'disallow' %>
+    <% else %>
+      <%= render 'allow' %>
+    <% end %>
+  </div>
+<% end %>

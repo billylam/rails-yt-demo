@@ -1,0 +1,3 @@
+<%= form_for(current_user.editorships.find_by_editor_id(@user.id), html: { method: :delete }) do |f| %>
+  <%= f.submit "Disallow Playlist Edits", class: "btn" %>
+<% end %>

@@ -1,10 +1,9 @@
-<% provide :page_title, @user.username %>
+<% provide :page_title, raw("#{@user.username}'s Playlists") %>
 
-
-<h1>User Playlists</h1>
+<h1><%= "#{@user.username}'s" %> Playlists</h1>
+<%= render 'allow_button' %>
 <ul>
   <% @user.playlists.each do |playlist| %>
     <%= render 'playlists/playlist_index_item', playlist: playlist if can? :view, playlist %>
   <% end %>
 </ul>
-
