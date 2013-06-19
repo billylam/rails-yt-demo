@@ -1,9 +1,14 @@
-<% unless current_user?(@user) %>
+<% if signed_in? && !current_user?(user) %>
   <div>
-    <% if current_user.allow?(@user) %>
-      <%= render 'disallow' %>
+    <% if current_user.allow?(user) %>
+      <%= form_for(current_user.editorships.find_by_editor_id(user.id), html: { method: :delete }, remote: true) do |f| %>
+        <%= f.submit "Disallow Playlist Edits", class: "btn", data:{user_id:user.id} %>
+      <% end %>
     <% else %>
-      <%= render 'allow' %>
+      <%= form_for(current_user.editorships.build(editor_id: user.id), remote: true) do |f| %>
+        <div><%= f.hidden_field :editor_id %></div>
+        <%= f.submit "Allow Playlist Edits", class: "btn", data:{user_id:user.id} %>
+      <% end %>
     <% end %>
   </div>
 <% end %>

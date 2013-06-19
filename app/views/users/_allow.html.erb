@@ -1,4 +1,0 @@
-<%= form_for(current_user.editorships.build(editor_id: @user.id)) do |f| %>
-  <div><%= f.hidden_field :editor_id %></div>
-  <%= f.submit "Allow Playlist Edits", class: "btn" %>
-<% end %>
