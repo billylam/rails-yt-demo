@@ -15,73 +15,7 @@
 </div>
 
 <script defer>
-  var currentlyPlaying = 0;
   <% if defined? playlist %>
-    var idList = <%= raw playlist.videos.pluck(:youtube_id).to_json %>;
-  <% else %>
-    var idList = [];
+    idList = <%= raw playlist.videos.pluck(:youtube_id).to_json %>;
   <% end %>
-
-  //Load IFrame YouTube API
-  var tag = document.createElement('script');
-
-  tag.src = "https://www.youtube.com/iframe_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-  //Construct Player
-  var player;
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-      height: '345',
-      width: '615',
-      playerVars: {'playlist':[idList]},
-      events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
-      }
-    });
-  }
-
-  //Functionality
-  var reload=false;
-  function onPlayerReady(event) {
-  }
-
-  function onPlayerStateChange(event) {
-    if (reload && reload == true && event.data == YT.PlayerState.UNSTARTED) {
-      current = player.getPlaylistIndex();  
-      reloadPlaylist(current);
-    }
-    if (event.data == YT.PlayerState.UNSTARTED) {
-      showMetadata();
-    }
-  }
-
-  function showMetadata() {
-    currentPos = player.getPlaylistIndex();
-    if ($('.playlistThumb').length) {
-      $('.videoName').text($('.playlistThumb').eq(currentPos).data('name'));
-      $('.descriptionBox').text($('.playlistThumb').eq(currentPos).data('description'));
-    }
-  }
-
-  function changeVideo(position) {
-    reloadPlaylist(position);
-  }
-
-  function highlight(position) {
-
-  }
-
-  function queueReloadPlaylist(youtube_id) {
-    idList.push(youtube_id)
-    reload = true;
-  }
-
-  function reloadPlaylist(position) {
-    reload = false;
-    player.loadPlaylist(idList, position);
-  }
-
 </script>
