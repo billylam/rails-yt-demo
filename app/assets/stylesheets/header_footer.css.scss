@@ -1,15 +1,16 @@
 /* header */
-.navbar {
+.navbar-inner {
+  border-radius: 0;
 }
 
 #rightnav {
   float: right;
-  padding-right:0;
-  margin-right:0;
+  padding-right: 0;
+  margin-right: 0;
 }
 
 #rightnav a {
-  padding-right:0;
+  padding-right: 0;
 }
 
 #newListButton {

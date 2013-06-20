@@ -1,1 +1,1 @@
-$("#allow_button").html("<%= escape_javascript(render('users/allow_button',user:@other_user)) %>");
+$("body *[allow_button_user_id=<%= @other_user.id %>]").html("<%= escape_javascript(render('users/allow_button',user:@other_user)) %>");

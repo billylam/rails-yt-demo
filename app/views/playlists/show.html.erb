@@ -1,17 +1,21 @@
 <% provide :page_title, @playlist.name %>
 
+</div> <!-- break normal template -->
+
+
 <div class="row">
   <%= render 'shared/flash' %>
+  <!-- YouTube player and metadata -->
   <div class="span8">
     <% unless @playlist.videos.first.nil? %>
       <%= render @playlist.videos.first, playlist: @playlist %>
     <% else %>
       <%= render Video.new %> 
     <% end %>
-
   </div>
-  <div class="span4">
 
+  <!-- Playlist -->
+  <div class="span4">
     <%= render 'videos/video_form' %>
     <ul id="playlist">
       <%= render @playlist %>
@@ -19,4 +23,6 @@
   </div>
 </div>
 
+
 <%= subscribe_to "/videos/add_to/#{@playlist.id}" %>
+<div> <!-- resume normal template for footer -->

@@ -1,32 +1,30 @@
-  <div class="span6 offset3">
-    <h1>Sign up!</h1>
-    <%= render 'shared/flash', flash: flash %>
-    <%= form_for @user do |f| %>
-      <% if @user.errors.any? %>
-        <div id="error_explanation">
+<h1>Sign up!</h1>
+<%= render 'shared/flash', flash: flash %>
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
 
-          <ul>
-            <% @user.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-      <div class="field">
-        <p>
-        <%= f.label :username %>
-        <%= f.text_field :username, placeholder:"Username" %>
-        </p>
-        <p>
-        <%= f.label :password %>
-        <%= f.password_field :password, placeholder:"Password" %>
-        </p>
-        <p>
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, placeholder:"Confirm Password" %>
-        </p>
-        <p> <%= f.submit "Sign Up", class:"btn" %> </p>
-      </div>
-    <% end %>
+  <div class="field">
+    <p>
+    <%= f.label :username %>
+    <%= f.text_field :username, placeholder:"Username" %>
+    </p>
+    <p>
+    <%= f.label :password %>
+    <%= f.password_field :password, placeholder:"Password" %>
+    </p>
+    <p>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, placeholder:"Confirm Password" %>
+    </p>
+    <p> <%= f.submit "Sign Up", class:"btn" %> </p>
   </div>
+<% end %>

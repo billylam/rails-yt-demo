@@ -1,20 +1,12 @@
-<h1>Listing users</h1>
+<h1>Users</h1>
 
-<table>
-  <tr>
-    <th>Username</th>
-    <th>Email</th>
-    <th>Friend</th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<ul>
   <% @users.each do |user| %>
-    <tr>
-      <td><%= user.username %></td>
-      <td><%= user.email %></td>
-      <td id="allow_button"><%= render 'allow_button', user: user if current_user != user %> </td>
-      <td><%= link_to 'Show', user %></td>
-    </tr>
+    <% if (!current_user? user) && (can? :view, user) %>
+      <li>
+      <%= tag "span", allow_button_user_id:user.id, id:"allow_button_container" %><%= render 'allow_button', user: user %> </span>
+      <%= link_to user.username, user_path(user.id) %> 
+      </li>
+    <% end %>
   <% end %>
-</table>
+</ul>
