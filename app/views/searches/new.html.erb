@@ -1,0 +1,8 @@
+<h1>Search</h1>
+
+<%= render 'shared/flash', flash: flash %>
+
+<%= form_tag searches_path, method: "get" do %>
+  <%= text_field_tag :text, nil, placeholder: "Search" %>
+  <%= submit_tag "Search", name: nil %>
+<% end %>

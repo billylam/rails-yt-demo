@@ -1,0 +1,7 @@
+
+<li>
+<%= tag "span", allow_button_user_id:user.id, id:"allow_button_container" %>
+<%= render 'users/allow_button', user: user %> 
+</span>
+<%= link_to user.username, user_path(user.id) %> 
+</li>

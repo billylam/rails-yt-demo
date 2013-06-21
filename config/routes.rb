@@ -12,10 +12,12 @@ RailsYtDemo::Application.routes.draw do
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :editorships, only: [:create, :destroy]
+  resources :searches, only: [:new, :index]
 
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+  match '/search', to: 'searches#new'
 
 
   # The priority is based upon order of creation:

@@ -1,0 +1,16 @@
+<%= render 'shared/flash', flash: flash %>
+
+<% unless @users.empty? %>
+  <h1> User Results </h1>
+  <% @users.each do |user| %>
+    <%= render 'users/user_index_item', user: user %>
+  <% end %>
+<% end %>
+
+<% unless @playlists.empty? %>
+  <h1> Playlist Results </h1>
+  <% @playlists.each do |playlist| %>
+    <%= render 'playlists/playlist_index_item', playlist: playlist %>
+  <% end %>
+<% end %>
+
