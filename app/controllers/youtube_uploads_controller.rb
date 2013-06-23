@@ -17,7 +17,7 @@ class YoutubeUploadsController < ApplicationController
     else
       session[:playlist_id] = params[:playlist_id]
       session[:redirect] = request.referer
-      redirect_to "https://accounts.google.com/o/oauth2/auth?client_id=940183026987.apps.googleusercontent.com&redirect_uri=http://127.0.0.1:3000/callback&scope=https://gdata.youtube.com&response_type=code&approval_prompt=force&access_type=offline"
+      redirect_to "https://accounts.google.com/o/oauth2/auth?client_id=940183026987.apps.googleusercontent.com&redirect_uri=http://playlister.herokuapp.com/callback&scope=https://gdata.youtube.com&response_type=code&approval_prompt=force&access_type=offline"
     end
   end
 
