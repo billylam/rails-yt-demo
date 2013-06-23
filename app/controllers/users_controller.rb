@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  load_resource
   def new
     @user = User.new
   end
@@ -18,8 +19,6 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
