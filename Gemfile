@@ -2,12 +2,15 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 gem 'bootstrap-sass', '~> 2.3.1.2'
-gem 'nokogiri'
+gem 'nokogiri', '~> 1.5.2'
 gem 'private_pub'
 gem 'thin'
 gem 'rinku', :require => 'rails_rinku'
 gem 'bcrypt-ruby'
 gem 'cancan'
+gem 'youtube_it', '~> 2.3.1'
+gem 'faraday'
+gem 'oauth2'
 
 group :production do
   gem 'pg'

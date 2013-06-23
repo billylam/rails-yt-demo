@@ -2,5 +2,5 @@
   <%= f.hidden_field :playlist_id %>
   <%= f.text_field :url_raw, size: 20, placeholder: "Add a YouTube video" %>
   <%= f.submit "Add", id:"addVideoBtn" ,class:"btn btn-submit" %>
-  <%= link_to image_tag("icon_upload_youtube.png", alt: "youtube upload button"), '#', id: "youtubeUpload" %>
+  <%= link_to image_tag("icon_upload_youtube.png", alt: "youtube upload button"), {controller: :youtube_uploads, action: :create, playlist_id: @playlist.id}, {method: :post} %>
 <% end %>

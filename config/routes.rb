@@ -13,11 +13,13 @@ RailsYtDemo::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :editorships, only: [:create, :destroy]
   resources :searches, only: [:new, :index]
+  resources :youtube_uploads, only: [:create, :callback]
 
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/search', to: 'searches#new'
+  match '/callback', to: 'youtube_uploads#callback'
 
 
   # The priority is based upon order of creation:
