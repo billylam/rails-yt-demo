@@ -39,7 +39,6 @@ class YoutubeUploadsController < ApplicationController
     session[:access_token] = access_token
     refresh_token = json["refresh_token"]
     session[:refresh_token] = refresh_token
-    raise
 
     redirect_to root_url
   end
