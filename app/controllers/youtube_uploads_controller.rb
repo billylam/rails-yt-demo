@@ -1,23 +1,33 @@
 class YoutubeUploadsController < ApplicationController
   def create
-    if session[:access_token]
-      #initialize client
-      client = YouTubeIt::OAuth2Client.new(client_access_token: session[:access_token], client_id: ENV["YT_CLIENT_ID"], client_secret: ENV["YT_CLIENT_SECRET"], dev_key: ENV["YT_DEV_KEY"]) 
-      #create playlist
-      
+    if session[:refresh_token]
+      client = YouTubeIt::OAuth2Client.new(
+        client_access_token: session[:access_token], 
+        client_refresh_token: session[:refresh_token],
+        client_id: ENV["YT_CLIENT_ID"], 
+        client_secret: ENV["YT_CLIENT_SECRET"], 
+        dev_key: ENV["YT_DEV_KEY"]) 
+
       playlist = Playlist.find(params[:playlist_id])
+
+      #check to see if access_token is still valid
+      #do this because checking via expiration time can be spotty
+      response_body = JSON.parse client.session_token_info[:body]
+      if response_body["error"] == "invalid_token"
+        response = client.refresh_access_token!
+        session[:access_token] = response.token
+      end
+
+      #youtube playlists are created by looping add video requests 1 at a time
       yt_playlist = client.add_playlist(title: playlist.name, description: "Created by playlister.herokuapp.com")
       yt_playlist_id = yt_playlist.playlist_id
-      #loop through videos
       playlist.videos.each do |video|
         client.add_video_to_playlist(yt_playlist_id, video.youtube_id)
       end
-
+      #in the future should do this asynchronously
       redirect_to "https://www.youtube.com/playlist?list=#{yt_playlist_id}"
     else
-      session[:playlist_id] = params[:playlist_id]
-      session[:redirect] = request.referer
-      redirect_to "https://accounts.google.com/o/oauth2/auth?client_id=940183026987.apps.googleusercontent.com&redirect_uri=http://playlister.herokuapp.com/callback&scope=https://gdata.youtube.com&response_type=code&approval_prompt=force&access_type=offline"
+      redirect_to "https://accounts.google.com/o/oauth2/auth?client_id=940183026987.apps.googleusercontent.com&redirect_uri=#{root_url}callback&scope=https://gdata.youtube.com&response_type=code&approval_prompt=force&access_type=offline"
     end
   end
 
@@ -29,12 +39,10 @@ class YoutubeUploadsController < ApplicationController
     session[:access_token] = access_token
     refresh_token = json["refresh_token"]
     session[:refresh_token] = refresh_token
+    raise
 
     redirect_to root_url
-    
   end
-
-
 
   def request_tokens(code)
     conn = Faraday.new(url: 'https://accounts.google.com', ssl: {verify: false}) do |faraday|
